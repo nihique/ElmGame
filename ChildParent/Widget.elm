@@ -1,6 +1,6 @@
 module ChildParent.Widget exposing (..)
 
-import Html exposing (Html, div, input, text)
+import Html exposing (Html, button, div, h3, input, text)
 import Html.Attributes exposing (type_)
 import Html.Events exposing (onClick)
 
@@ -35,7 +35,8 @@ view : Model -> Html Msg
 view model =
     div
         []
-        [ text (toString model.count)
-        , input [ type_ "button", onClick Decrement ] [ text "Decrement" ]
-        , input [ type_ "button", onClick Increment ] [ text "Increment" ]
+        [ h3 [] [ text "Widget (Child)" ]
+        , div [] [ text (toString model.count) ]
+        , div [] [ button [ onClick Increment ] [ text "Increment" ] ]
+        , div [] [ button [ onClick Decrement ] [ text "Decrement" ] ]
         ]

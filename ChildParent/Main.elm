@@ -3,36 +3,46 @@ module ChildParent.Main exposing (..)
 import Html exposing (Html, div, h1, h2, input, label, program, text)
 import Html.Attributes exposing (type_, value)
 import Html.Events exposing (onInput)
+import ChildParent.Widget as Widget
+
+
+-- MAIN
 
 
 main : Program Never Model Msg
 main =
     program
-        { init = ( initialModel, initialCommand )
+        { init = ( initialModel, Cmd.none )
         , update = update
-        , subscriptions = subscriptions
+        , subscriptions = \_ -> Sub.none
         , view = view
         }
 
 
+
+-- MODEL
+
+
 type alias Model =
     { heading : String
+    , widgetModel : Widget.Model
     }
 
 
 initialModel : Model
 initialModel =
     { heading = "Parent heading"
+    , widgetModel = Widget.initialModel
     }
 
 
-initialCommand : Cmd Msg
-initialCommand =
-    Cmd.none
+
+-- UPDATE
 
 
 type Msg
     = SetHeading String
+    | WidgetMsg Widget.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -41,10 +51,16 @@ update msg model =
         SetHeading value ->
             ( { model | heading = value }, Cmd.none )
 
+        WidgetMsg subMsg ->
+            let
+                ( widgetModel, widgetMsg ) =
+                    Widget.update subMsg model.widgetModel
+            in
+                ( { model | widgetModel = widgetModel }, Cmd.map WidgetMsg widgetMsg )
 
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
+
+
+-- VIEW
 
 
 view : Model -> Html Msg
@@ -53,7 +69,8 @@ view model =
         []
         [ h1 [] [ text "Component Architecture" ]
         , h2 [] [ text model.heading ]
-        , div []
+        , div
+            []
             [ label [] [ text "Heading: " ]
             , input
                 [ type_ "text"
@@ -61,5 +78,9 @@ view model =
                 , onInput SetHeading
                 ]
                 []
+            ]
+        , div
+            []
+            [ Html.map WidgetMsg (Widget.view model.widgetModel)
             ]
         ]
