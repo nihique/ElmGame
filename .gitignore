@@ -1,4 +1,4 @@
 elm-stuff
 .idea
-*.js
 node_modules
+elm.js
