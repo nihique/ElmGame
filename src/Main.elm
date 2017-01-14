@@ -5,8 +5,8 @@ module Main exposing (..)
 import Html exposing (Html, div, program, text)
 
 
-type Model
-    = String
+type alias Model =
+    String
 
 
 init : ( Model, Cmd Msg )
@@ -35,7 +35,7 @@ type Msg
 -- UPDATE
 
 
-update : Msg Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoneYet ->
@@ -55,10 +55,11 @@ subscriptions model =
 -- MAIN
 
 
+main : Program Never Model Msg
 main =
     program
         { init = init
-        , view = view
         , update = update
         , subscriptions = subscriptions
+        , view = view
         }
