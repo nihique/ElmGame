@@ -1,55 +1,11 @@
 module Main exposing (..)
 
--- MODEL
-
-import Html exposing (Html, div, program, text)
-
-
-type alias Model =
-    String
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( "Hello ElmGame", Cmd.none )
-
-
-
--- VIEW
-
-
-view : Model -> Html Msg
-view model =
-    div [] [ text model ]
-
-
-
--- MESSAGES
-
-
-type Msg
-    = NoneYet
-
-
-
--- UPDATE
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoneYet ->
-            ( model, Cmd.none )
-
-
-
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
+import Html exposing (program)
+import Messages exposing (Msg)
+import Model exposing (Model, init)
+import Subscriptions exposing (subscriptions)
+import Update exposing (update)
+import View exposing (view)
 
 
 -- MAIN
