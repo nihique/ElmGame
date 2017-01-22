@@ -12,7 +12,7 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    { players = [ Player "1" "Johnny" 3, Player "2" "Angelina" 2 ]
+    { players = []
     }
 
 
