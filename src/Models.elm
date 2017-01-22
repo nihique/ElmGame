@@ -1,7 +1,8 @@
 module Models exposing (..)
 
-import Messages exposing (Msg)
+import Messages exposing (Msg(PlayersMsg))
 import Players.Models exposing (Player)
+import Players.Commands exposing (fetchAll)
 
 
 type alias Model =
@@ -17,4 +18,4 @@ initialModel =
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, Cmd.none )
+    ( initialModel, Cmd.map PlayersMsg fetchAll )
