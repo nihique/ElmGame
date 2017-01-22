@@ -1,8 +1,12 @@
 module Players.Models exposing (..)
 
 
+type alias PlayerId =
+    String
+
+
 type alias Player =
-    { playerId : Int
+    { id : PlayerId
     , name : String
     , level : Int
     }
@@ -10,4 +14,4 @@ type alias Player =
 
 new : Player
 new =
-    Player ( 0, "", 1 )
+    Player "0" "" 1

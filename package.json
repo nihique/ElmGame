@@ -4,6 +4,7 @@
   "description": "elm tutorial",
   "main": "elm.js",
   "scripts": {
+    "start": "nf start",
     "api": "node api.js",
     "build": "webpack",
     "watch": "webpack --watch",
