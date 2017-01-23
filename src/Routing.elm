@@ -1,10 +1,10 @@
-module Main exposing (..)
+module Routing exposing (Route(..), parseLocation)
 
 import Players.Models exposing (PlayerId)
 import UrlParser exposing (..)
 
 
-type Routes
+type Route
     = PlayersRoute
     | PlayerRoute PlayerId
     | NotFoundRoute

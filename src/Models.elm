@@ -1,21 +1,17 @@
-module Models exposing (..)
+module Models exposing (Model, initialModel)
 
-import Messages exposing (Msg(PlayersMsg))
 import Players.Models exposing (Player)
-import Players.Commands exposing (fetchAll)
+import Routing exposing (Route(PlayersRoute))
 
 
 type alias Model =
     { players : List Player
+    , route : Route
     }
 
 
 initialModel : Model
 initialModel =
     { players = []
+    , route = PlayersRoute
     }
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel, Cmd.map PlayersMsg fetchAll )
