@@ -3,7 +3,7 @@ module Players.ViewEdit exposing (view)
 import Html exposing (Html, a, button, div, h1, i, span, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
-import Players.Messages exposing (Msg(NavigateToPlayerList))
+import Players.Messages exposing (Msg(ChangeLevel, NavigateToPlayerList))
 import Players.Models exposing (Player)
 
 
@@ -57,11 +57,17 @@ formLevel player =
 
 btnLevelDecrease : Player -> Html Msg
 btnLevelDecrease player =
-    a [ class "btn ml1 h1" ]
+    a
+        [ class "btn ml1 h1"
+        , onClick (ChangeLevel player.id 1)
+        ]
         [ i [ class "fa fa-minus-circle" ] [] ]
 
 
 btnLevelIncrease : Player -> Html Msg
 btnLevelIncrease player =
-    a [ class "btn ml1 h1" ]
+    a
+        [ class "btn ml1 h1"
+        , onClick (ChangeLevel player.id 1)
+        ]
         [ i [ class "fa fa-plus-circle" ] [] ]
