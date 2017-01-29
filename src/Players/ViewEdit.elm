@@ -1,8 +1,9 @@
 module Players.ViewEdit exposing (view)
 
-import Html exposing (Html, a, div, h1, i, span, text)
+import Html exposing (Html, a, button, div, h1, i, span, text)
 import Html.Attributes exposing (class)
-import Players.Messages exposing (Msg)
+import Html.Events exposing (onClick)
+import Players.Messages exposing (Msg(NavigateToPlayerList))
 import Players.Models exposing (Player)
 
 
@@ -17,7 +18,18 @@ view model =
 nav : Player -> Html Msg
 nav model =
     div [ class "clearfix mb2 white bg-black p1" ]
-        []
+        [ listPlayersButton ]
+
+
+listPlayersButton =
+    button
+        [ onClick NavigateToPlayerList
+        ]
+        [ i
+            [ class "fa fa-chevron-left mr1" ]
+            []
+        , text "Players"
+        ]
 
 
 form : Player -> Html Msg

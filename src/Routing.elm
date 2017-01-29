@@ -14,7 +14,7 @@ parser =
     UrlParser.oneOf
         [ map PlayersRoute top
         , map PlayersRoute (s "players")
-        , map PlayerRoute (s "player" </> string)
+        , map PlayerRoute (s "players" </> string)
         ]
 
 
