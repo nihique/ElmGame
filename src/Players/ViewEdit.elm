@@ -21,6 +21,7 @@ nav model =
         [ listPlayersButton ]
 
 
+listPlayersButton : Html Msg
 listPlayersButton =
     button
         [ onClick NavigateToPlayerList
